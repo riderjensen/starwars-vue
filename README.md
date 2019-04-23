@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # starwars-vue
 
 ## Project setup
@@ -27,3 +28,6 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+=======
+# starwars-vue
+>>>>>>> 05aac3e08f1f87330b8a8365a5b760df9af2149b
