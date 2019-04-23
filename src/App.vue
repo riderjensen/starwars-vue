@@ -29,9 +29,19 @@ export default {
   components: {
     HelloWorld
   },
+  created() {
+
+  },
   data () {
     return {
-      //
+      starships: []
+    }
+  },
+  methods: {
+    axiosCall: function(URL){
+      this.axios.get(URL).then((response) => {
+        console.log(response.data)
+      }).catch(err => console.log(err));
     }
   }
 }
