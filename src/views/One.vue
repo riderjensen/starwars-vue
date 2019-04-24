@@ -15,9 +15,21 @@
     <p>Cargo Capacity: {{ship.cargo_capacity}}</p>
     <p>Consumables: {{ship.consumables}}</p>
     <p>Class: {{ship.starship_class}}</p>
-    <v-btn v-if="ship.pilots.length >= 1" class="my-button" @click="pilots" flat color="blue">View Pilots</v-btn>
+    <v-btn v-if="ship.pilots.length >= 1" class="my-button" @click="pilots(0)" flat color="blue">View Pilots</v-btn>
              
        </div>
+        <v-progress-circular v-if="pilotLoading" indeterminate color="primary"></v-progress-circular>
+       <div v-if="!pilotLoading && returnedPilots.length >1">
+          <div v-for="(incPilot, index) in returnedPilots" :key="index">
+                <p>Pilot Name: {{incPilot.name}}</p>
+             <p>Birth: {{incPilot.birth_year}}</p>
+             <p>Gender: {{incPilot.gender}}</p>
+             <p>Eye Color: {{incPilot.eye_color}}</p>
+             <p>Hair Color: {{incPilot.hair_color}}</p>
+          </div>
+           
+       </div>
+    
     </div>
 </template>
 
@@ -28,7 +40,8 @@ export default {
             ship:{},
             error: '',
             loading: true,
-            pilots: []
+            returnedPilots: [],
+            pilotLoading: false,
         }
     },
     created(){
@@ -47,8 +60,14 @@ export default {
       });
     },
     methods:{
-        pilots: function(){
-            console.log(this.ship.pilots)
+        pilots: function(number){
+        this.pilotLoading = true;
+        this.axios.get(this.ship.pilots[number])
+        .then(response => {
+          this.returnedPilots.push(response.data);
+          number < this.ship.pilots.length-1 ? this.pilots(number + 1) : this.pilotLoading = false;
+        })
+        .catch(err => this.error = err);
         }
     }
 }
