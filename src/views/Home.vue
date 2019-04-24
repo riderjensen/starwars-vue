@@ -83,21 +83,21 @@ import { parse } from 'url';
       this.selectedID = starship.url.split('/')[starship.url.split('/').length-2]
     },
     sortAsc: function() {
-      for(let i = 0; i <= this.starships.length; i++){
-        const tryParse = parseInt(this.starships[i].cost_in_credits);
-        if(tryParse === NaN){
-          sortedStarships.push(this.starships[i])
-        } else {
-          for(let j = 0; j <= this.sortedStarships.length; j++){
-            if(tryParse > this.sortedStarships[j].cost_in_credits){
-              null;
-            } else {
-              this.sortedStarships.splice(j, 0, this.starships[i])
-            }
-          }
-        }
-      }
-      console.log(this.sortedStarships)
+      // FIX ME
+      // for(let i = 1; i <= this.starships.length-1; i++){
+      //   const tryParse = parseInt(this.starships[i].cost_in_credits);
+      //   if(tryParse === NaN){
+      //     sortedStarships.push(this.starships[i])
+      //   } else {
+      //     for(let j = 0; j <= this.sortedStarships.length-1; j++){
+      //       if(!(tryParse > parseInt(this.sortedStarships[j].cost_in_credits))){
+      //         this.sortedStarships.splice(j, 0, this.starships[i])
+            
+      //       }
+      //     }
+      //   }
+      // }
+      // console.log(this.sortedStarships)
     },
     sortDsc: function() {
     },
