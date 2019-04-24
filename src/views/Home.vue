@@ -57,7 +57,7 @@
                     <v-btn
             color="primary"
             flat
-            @click="dialog = false"
+            :to="selectedID"
           >
             Read More
           </v-btn>
@@ -81,7 +81,8 @@
       loading: true,
       selected: {},
       dialog: false,
-      error: ''
+      error: '',
+      selectedID: 0
     };
   },
   methods: {
@@ -101,6 +102,7 @@
     },
     selectItem: function(starship){
       this.selected = starship;
+      this.selectedID = starship.url.split('/')[starship.url.split('/').length-2]
       this.dialog = true;
     }
   }
