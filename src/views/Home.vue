@@ -8,8 +8,15 @@
       <v-flex xs12 sm10 offset-sm1>
                            <v-text-field
             v-model="searchName"
-            label="Search"
+            label="Search by name"
             v-on:input="search"
+          ></v-text-field>
+                                     <v-text-field
+            v-model="searchPrice"
+            label="Search by price"
+            v-on:input="searchByPrice"
+            type="number"
+
           ></v-text-field>
                     <v-btn @click="sortAsc" flat color="blue">Sort Price Ascending</v-btn> 
                     <v-btn @click="sortDsc" flat color="blue">Sort Price Decending</v-btn>          
@@ -38,6 +45,7 @@
 </template>
 
 <script>
+import { parse } from 'url';
     export default {
   name: "App",
   created() {
@@ -51,7 +59,8 @@
       selected: {},
       error: '',
       selectedID: 0,
-      searchName: ''
+      searchName: '',
+      searchPrice: ''
     };
   },
   methods: {
@@ -77,8 +86,11 @@
     },
     sortDsc: function() {
     },
-    search: function(){
-        this.sortedStarships = this.starships.filter(item => item.name.includes(this.searchName))
+    search: function() {
+      this.sortedStarships = this.starships.filter(item => item.name.includes(this.searchName))
+    },
+    searchByPrice: function() {
+      this.searchPrice === '' ? this.sortedStarships = [...this.starships] : this.sortedStarships = this.starships.filter(item => parseInt(item.cost_in_credits) < parseInt(this.searchPrice))
     }
   }
 };
