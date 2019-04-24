@@ -1,29 +1,10 @@
 # starwars-vue
 
-## Project setup
-```
-npm install
-```
+## To do (in order of completed):
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Run your tests
-```
-npm run test
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+1. [x] See a list of all starships
+2. [x] See individual starship
+3. [x] See info on pilots attached to individual starships
+2. Filter list by price
+3. Sort list by price
+4. Search list

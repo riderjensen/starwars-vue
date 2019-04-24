@@ -1,9 +1,19 @@
 <template>
   <div>
     <p v-if="error" style="color: red;">{{error}}</p>
-        <v-content>
+    <v-content>
+
      <v-layout>
+
       <v-flex xs12 sm10 offset-sm1>
+                           <v-text-field
+            v-model="searchName"
+            label="Search"
+            v-on:input="search"
+          ></v-text-field>
+                    <v-btn @click="sortAsc" flat color="blue">Sort Price Ascending</v-btn> 
+                    <v-btn @click="sortDsc" flat color="blue">Sort Price Decending</v-btn>          
+
         <v-card>
           <v-progress-circular v-if="loading" indeterminate color="primary"></v-progress-circular>
           <v-container v-bind="{ [`grid-list-md`]: true }" fluid>
@@ -36,10 +46,12 @@
   data() {
     return {
       starships: [],
+      sortedStarships: [],
       loading: true,
       selected: {},
       error: '',
-      selectedID: 0
+      selectedID: 0,
+      searchName: ''
     };
   },
   methods: {
@@ -59,6 +71,14 @@
     selectItem: function(starship){
       this.selected = starship;
       this.selectedID = starship.url.split('/')[starship.url.split('/').length-2]
+    },
+    sortAsc: function() {
+    },
+    sortDsc: function() {
+    },
+    search: function(){
+        this.sortedStarships = this.starships.filter(item => item.name.includes(this.searchName))
+        console.log(this.sortedStarships)
     }
   }
 };
