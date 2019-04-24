@@ -18,7 +18,7 @@
           <v-progress-circular v-if="loading" indeterminate color="primary"></v-progress-circular>
           <v-container v-bind="{ [`grid-list-md`]: true }" fluid>
             <v-layout v-if="!loading" row wrap>
-              <v-flex v-for="(starship, index) in starships" :key="index" xs3>
+              <v-flex v-for="(starship, index) in sortedStarships" :key="index" xs3>
                 <v-card min-height="100%">
                   <v-card-title primary-title>
                     <h3 class="headline mb-0">{{starship.name}}</h3>
@@ -60,6 +60,7 @@
         .get(URL)
         .then(response => {
           this.starships.push(...response.data.results);
+          this.sortedStarships.push(...response.data.results);
           if (response.data.next) {
             this.axiosCall(response.data.next);
           } else {
@@ -78,7 +79,6 @@
     },
     search: function(){
         this.sortedStarships = this.starships.filter(item => item.name.includes(this.searchName))
-        console.log(this.sortedStarships)
     }
   }
 };
