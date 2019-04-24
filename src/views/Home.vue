@@ -51,7 +51,6 @@
           if (response.data.next) {
             this.axiosCall(response.data.next);
           } else {
-            console.log(this.starships)
             this.loading = false;
           }
         })
@@ -65,5 +64,15 @@
 };
 </script>
 <style scoped>
-
+.v-card__actions {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.my-button {
+  width: 100%;
+}
+.v-card__title--primary {
+  margin-bottom: 40px;
+}
 </style>

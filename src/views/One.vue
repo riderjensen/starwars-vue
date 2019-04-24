@@ -21,11 +21,15 @@
         <v-progress-circular v-if="pilotLoading" indeterminate color="primary"></v-progress-circular>
        <div v-if="!pilotLoading && returnedPilots.length >1">
           <div v-for="(incPilot, index) in returnedPilots" :key="index">
-                <p>Pilot Name: {{incPilot.name}}</p>
+<v-flex xs12 sm6 offset-sm3>
+      <v-card>
+                       <p>Pilot Name: {{incPilot.name}}</p>
              <p>Birth: {{incPilot.birth_year}}</p>
              <p>Gender: {{incPilot.gender}}</p>
              <p>Eye Color: {{incPilot.eye_color}}</p>
              <p>Hair Color: {{incPilot.hair_color}}</p>
+      </v-card>
+    </v-flex>
           </div>
            
        </div>
